@@ -1,0 +1,19 @@
+services:
+  minecraft:
+    container_name: minecraft
+    image: itzg/minecraft-server:java21
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: "AUTO_CURSEFORGE"
+      CF_API_KEY: "${CF_API_KEY}"
+      CF_SLUG: "prominence-2-hasturian-era"
+      CF_FORCE_SYNCHRONIZE: "true"
+      MEMORY: "8G"
+      TZ: "Europe/London"
+    volumes:
+      - ./data:/data

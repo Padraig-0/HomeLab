@@ -1,0 +1,24 @@
+# Environment files
+.env
+*.env
+
+# SSL / keys
+*.key
+*.pem
+
+# Database dumps
+*.db
+*.sqlite
+
+# Backups
+*.tar.gz
+*.bak
+
+# OS junk
+.DS_Store
+Thumbs.db
+apps/minecraft/data/
+core/npm/data
+core/npm/letsencrypt
+npm/data/
+core/pihole/etc-pihole/

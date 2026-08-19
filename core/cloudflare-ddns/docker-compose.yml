@@ -1,0 +1,16 @@
+services:
+  cloudflare-ddns:
+    image: favonia/cloudflare-ddns:1
+    container_name: cloudflare-ddns
+    restart: unless-stopped
+    user: "1000:1000"
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    cap_drop:
+      - all
+    environment:
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
+      - DOMAINS=mc.padraigdonaghy.com
+      - PROXIED=false
+      - IP6_PROVIDER=none
