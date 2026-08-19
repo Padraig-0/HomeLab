@@ -1,6 +1,6 @@
 # Homelab
 
-Self-hosted infrastructure running on a dedicated Ubuntu Server 26.04 LTS box, managed via Docker Compose with a GitOps workflow.
+Self-hosted infrastructure running on a dedicated Ubuntu Server 26.04 LTS box, managed via Docker Compose.
 
 ## Stack
 
@@ -8,7 +8,7 @@ Self-hosted infrastructure running on a dedicated Ubuntu Server 26.04 LTS box, m
 - **Portainer CE** — container management UI (`https://<host>:9443`)
 - **Nginx Proxy Manager** — reverse proxy, internal `*.lan` routing, SSL termination (`http://<host>:81`)
 - **Pi-hole** — local DNS resolution for `*.lan` hostnames (`http://<host>:8080/admin`)
-- **Cloudflare DDNS** — keeps `mc.padraigdonaghy.com` pointed at the current public IP
+- **Cloudflare DDNS** — keeps `mc.<mydomain>.com` pointed at the current public IP
 
 ### `docker/apps/`
 - **Minecraft (Prominence II: Hasturian Era)** — modded Fabric server via `itzg/minecraft-server`, port `25565`
@@ -28,5 +28,7 @@ Self-hosted infrastructure running on a dedicated Ubuntu Server 26.04 LTS box, m
 
 ## Notes
 
-- No secrets are committed — see `.gitignore`. Real credentials live only in each service's `.env`, never tracked.
+- No secrets are committed as best as possible — see `.gitignore`. Real credentials live only in each service's `.env`, never tracked.
 - Runtime/data directories (Pi-hole DB, NPM certs, Minecraft world data) are gitignored — only Compose configs are version-controlled.
+
+- An early version of this repo tracked a Pi-hole admin password directly in docker-compose.yml. The credential was rotated, moved to a gitignored .env with a committed .env.example template, and the repository history was rebuilt to remove both the credential and several hundred megabytes of accidentally-tracked Minecraft server data.
